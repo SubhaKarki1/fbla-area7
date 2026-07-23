@@ -84,7 +84,7 @@ export const EVENTS: Event[] = [
   {
     id: "fall-workshop",
     title: "Fall Leadership Conference",
-    date: "November 14, 2027",
+    date: "November 14, 2026",
     dateShort: "Nov 14",
     location: "Central High School · Fort Worth, TX",
     description:
@@ -102,8 +102,8 @@ export const EVENTS: Event[] = [
   {
     id: "slc",
     title: "State Leadership Conference",
-    date: "TBD",
-    dateShort: "TBD",
+    date: "April 4-6, 2027",
+    dateShort: "Apr 4-6",
     location: "Fort Worth, TX",
     description:
       "The premier FBLA event in Texas. Top Area 7 competitors advance to represent us at the state level.",
