@@ -161,8 +161,8 @@ export function Navbar() {
                 ))}
               </nav>
               <div className="mt-auto pt-5 border-t border-white/10">
-                <a href="mailto:area7@fblatx.org" className="text-gold text-sm font-medium">
-                  area7@fblatx.org
+                <a href="mailto:area7rep@fblatx.org" className="text-gold text-sm font-medium">
+                  area7rep@fblatx.org
                 </a>
               </div>
             </motion.div>

@@ -89,10 +89,10 @@ export function Footer() {
               ))}
             </div>
             <a
-              href="mailto:area7@fblatx.org"
+              href="mailto:area7rep@fblatx.org"
               className="text-gold hover:text-gold-light text-sm font-medium transition-colors"
             >
-              area7@fblatx.org
+              area7rep@fblatx.org
             </a>
           </div>
 

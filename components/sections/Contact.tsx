@@ -68,13 +68,13 @@ export function Contact() {
             </div>
 
             <a
-              href="mailto:area7@fblatx.org"
+              href="mailto:area7rep@fblatx.org"
               className="inline-flex items-center gap-3 text-gold hover:text-gold-light transition-colors group"
             >
               <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center group-hover:border-gold transition-colors">
                 <Mail size={16} className="text-gold" />
               </div>
-              <span className="font-semibold text-lg">area7@fblatx.org</span>
+              <span className="font-semibold text-lg">area7rep@fblatx.org</span>
             </a>
 
             <div className="pt-4 space-y-3">
