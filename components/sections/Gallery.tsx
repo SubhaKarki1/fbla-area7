@@ -1,10 +1,34 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import { fadeUp, staggerContainer, cardEntrance, viewportOnce } from "@/lib/motion"
+import { staggerContainer, cardEntrance, viewportOnce } from "@/lib/motion"
+import { SectionHeading } from "@/components/shared/SectionHeading"
 import { GALLERY_PHOTOS } from "@/lib/data"
+
+/* Mosaic over a 3-column grid: a 2x2 feature tile, two stacked tiles beside it,
+   then a full-width band. Four identical 16:9 tiles gave every photo equal
+   weight and read as a contact sheet; this gives the section a focal point.
+   These spans tile the grid exactly — no auto-placement holes. */
+const TILE_SPANS = [
+  "sm:col-span-2 sm:row-span-2",
+  "sm:col-span-1 sm:row-span-1",
+  "sm:col-span-1 sm:row-span-1",
+  "sm:col-span-3 sm:row-span-1",
+]
+
+/* Each tile renders at a different width, so they need different `sizes`.
+   A single shared value made the browser fetch a 640px file for the 816px
+   feature tile and the 1232px band, which rendered visibly soft. The grid
+   is capped by max-w-7xl, hence the fixed upper bounds. */
+const TILE_SIZES = [
+  "(max-width: 640px) 100vw, (max-width: 1320px) 58vw, 816px",
+  "(max-width: 640px) 100vw, (max-width: 1320px) 29vw, 400px",
+  "(max-width: 640px) 100vw, (max-width: 1320px) 29vw, 400px",
+  "(max-width: 640px) 100vw, (max-width: 1320px) 88vw, 1232px",
+]
 
 export function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
@@ -31,45 +55,41 @@ export function Gallery() {
       <section id="gallery" className="py-24 sm:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 
-          {/* Heading */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="text-center mb-14"
-          >
-            <span className="gold-bar mx-auto mb-4" />
-            <h2 className="text-navy-deep text-3xl sm:text-4xl font-bold mb-3">
-              Highlights from Area 7
-            </h2>
-            <p className="text-slate-500 text-lg max-w-xl mx-auto" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-              Celebrating our recent achievements and memorable moments
-            </p>
-          </motion.div>
+          <SectionHeading
+            eyebrow="Gallery"
+            title="Highlights from Area 7"
+            description="Celebrating our recent achievements and memorable moments."
+            className="mb-14"
+          />
 
-          {/* Photo grid */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-3 sm:auto-rows-[220px] gap-4"
           >
             {GALLERY_PHOTOS.map((photo, i) => (
               <motion.button
                 key={i}
                 variants={cardEntrance}
-                className="relative aspect-video overflow-hidden rounded-xl group cursor-pointer"
+                type="button"
+                aria-label={`View photo: ${photo.alt}`}
+                className={`relative overflow-hidden rounded-xl group cursor-pointer
+                            aspect-video sm:aspect-auto ${TILE_SPANS[i] ?? "sm:col-span-1"}`}
                 onClick={() => setLightboxIndex(i)}
               >
-                <img
+                <Image
                   src={photo.src}
                   alt={photo.alt}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes={TILE_SIZES[i] ?? "(max-width: 640px) 100vw, 33vw"}
+                  className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-navy-deep/0 group-hover:bg-navy-deep/40 transition-colors duration-300 flex items-end p-4">
-                  <span className="text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left line-clamp-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/10 to-transparent
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                                flex items-end p-4">
+                  <span className="font-body text-white text-sm font-medium text-left line-clamp-3">
                     {photo.caption}
                   </span>
                 </div>
@@ -89,18 +109,21 @@ export function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
+            role="dialog"
+            aria-modal="true"
           >
             <motion.div
               className="relative max-w-4xl w-full"
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.96, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              exit={{ scale: 0.96, opacity: 0 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="absolute -top-10 right-0 text-white/70 hover:text-white transition-colors"
                 onClick={closeLightbox}
+                aria-label="Close"
               >
                 <X size={24} />
               </button>
@@ -110,7 +133,7 @@ export function Gallery() {
                 className="w-full h-auto rounded-lg max-h-[75vh] object-contain"
               />
               {GALLERY_PHOTOS[lightboxIndex].caption && (
-                <div className="mt-3 px-4 py-2 bg-navy/80 rounded text-white text-sm text-center">
+                <div className="font-body mt-3 px-4 py-2 bg-navy/80 rounded text-white text-sm text-center">
                   {GALLERY_PHOTOS[lightboxIndex].caption}
                 </div>
               )}
@@ -119,12 +142,14 @@ export function Gallery() {
                   <button
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/40 hover:bg-black/60 rounded-full p-2 transition-all"
                     onClick={prev}
+                    aria-label="Previous photo"
                   >
                     <ChevronLeft size={20} />
                   </button>
                   <button
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white bg-black/40 hover:bg-black/60 rounded-full p-2 transition-all"
                     onClick={next}
+                    aria-label="Next photo"
                   >
                     <ChevronRight size={20} />
                   </button>

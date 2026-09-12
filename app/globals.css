@@ -11,6 +11,13 @@
   --fbla-navy-mid:  #003d85;
   --fbla-gold:      #d4a900;
   --fbla-gold-light:#e5b800;
+  /* Gold is 7.9:1 on navy but only 2.2:1 on white — use this for gold text
+     on light backgrounds (4.9:1, clears WCAG AA for normal text). */
+  --fbla-gold-ink:  #8a6d00;
+
+  /* Card surface — flat, hairline border, one crisp shadow. */
+  --card-border:    rgba(0, 42, 92, 0.10);
+  --rule:           rgba(0, 42, 92, 0.11);
 
   /* shadcn/ui system tokens (mapped to FBLA brand) */
   --background:             #f8f9fc;
@@ -42,6 +49,8 @@
   --color-navy-mid:    var(--fbla-navy-mid);
   --color-gold:        var(--fbla-gold);
   --color-gold-light:  var(--fbla-gold-light);
+  --color-gold-ink:    var(--fbla-gold-ink);
+  --color-rule:        var(--rule);
 
   /* shadcn system colors */
   --color-background:          var(--background);
@@ -72,8 +81,9 @@
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
 
-  /* Shadows */
-  --shadow-card: 0 4px 24px rgba(0, 42, 92, 0.07), 0 1px 4px rgba(0, 42, 92, 0.05);
+  /* Shadows — one crisp, close shadow rather than a broad haze */
+  --shadow-card: 0 1px 2px rgba(0, 42, 92, 0.06), 0 4px 12px rgba(0, 42, 92, 0.05);
+  --shadow-lift: 0 2px 4px rgba(0, 42, 92, 0.07), 0 12px 28px rgba(0, 42, 92, 0.09);
   --shadow-gold: 0 8px 32px rgba(212, 169, 0, 0.15);
 }
 
@@ -120,11 +130,11 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
-.glass-light {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 42, 92, 0.09);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+/* Flat card surface. Replaces the old .glass-light — its backdrop-filter
+   blurred solid backgrounds, costing a compositing layer for no visible effect. */
+.surface {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
 }
 
 .gold-bar {
@@ -133,4 +143,24 @@
   height: 3px;
   background: var(--fbla-gold);
   border-radius: 2px;
+}
+
+/* Section eyebrow — small uppercase label above a heading. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.55;
 }

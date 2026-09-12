@@ -1,5 +1,3 @@
-import { Instagram, Twitter, Facebook } from "lucide-react"
-
 const QUICK_LINKS = [
   { label: "About", href: "#about" },
   { label: "Schools", href: "#schools" },
@@ -34,26 +32,11 @@ export function Footer() {
                 <span className="text-[11px] text-gold font-semibold tracking-[0.12em] uppercase">North Texas</span>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed max-w-xs" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
+            <p className="font-body text-white/50 text-sm leading-relaxed max-w-xs">
               Developing tomorrow's business leaders through education, service, and progress.
             </p>
-            {/* Social icons */}
-            <div className="flex items-center gap-3 pt-1">
-              {[
-                { Icon: Instagram, label: "Instagram" },
-                { Icon: Twitter, label: "Twitter" },
-                { Icon: Facebook, label: "Facebook" },
-              ].map(({ Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
+            {/* Social icons intentionally omitted until real account URLs exist —
+                they previously all pointed at "#" and did nothing when clicked. */}
           </div>
 
           {/* Quick links */}

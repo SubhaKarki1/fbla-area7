@@ -1,7 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { fadeUp, staggerContainer, cardEntrance, viewportOnce } from "@/lib/motion"
+import { staggerContainer, cardEntrance, viewportOnce } from "@/lib/motion"
+import { SectionHeading } from "@/components/shared/SectionHeading"
 import { OFFICERS } from "@/lib/data"
 
 function getInitials(name: string) {
@@ -18,70 +20,65 @@ export function Leadership() {
     <section id="leadership" className="py-24 sm:py-32 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
 
-        {/* Heading */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="text-center mb-14"
-        >
-          <span className="gold-bar mx-auto mb-4" />
-          <h2 className="text-navy-deep text-3xl sm:text-4xl font-bold mb-3">
-            Area 7 Leadership
-          </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-            The officer team dedicated to serving Area 7 and its member schools
-          </p>
-        </motion.div>
+        <SectionHeading
+          eyebrow="Officer Team"
+          title="Area 7 Leadership"
+          description="The officer team dedicated to serving Area 7 and its member schools."
+          className="mb-14"
+        />
 
-        {/* Officers grid */}
-        <motion.div
+        <motion.ul
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5"
+          className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6"
         >
           {OFFICERS.map((officer, i) => (
-            <motion.div
+            <motion.li
               key={i}
               variants={cardEntrance}
-              className="glass-light rounded-xl p-5 flex flex-col items-center text-center gap-3
-                         shadow-[var(--shadow-card)] hover:-translate-y-1 transition-transform duration-300"
+              className="surface rounded-2xl overflow-hidden shadow-[var(--shadow-card)]
+                         hover:shadow-[var(--shadow-lift)] transition-shadow duration-300"
             >
-              {/* Avatar */}
-              <div className="w-16 h-16 rounded-full bg-navy-deep flex items-center justify-center flex-shrink-0">
+              <div className="relative aspect-[4/5] bg-navy-deep">
                 {officer.photo ? (
-                  <img
+                  <Image
                     src={officer.photo}
                     alt={officer.name}
-                    className="w-full h-full rounded-full object-cover"
-                    style={officer.photoPosition ? { objectPosition: officer.photoPosition } : undefined}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover"
+                    style={
+                      officer.photoPosition
+                        ? { objectPosition: officer.photoPosition }
+                        : undefined
+                    }
                   />
                 ) : (
-                  <span className="text-gold font-bold text-lg">
-                    {getInitials(officer.name)}
-                  </span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-gold font-bold text-4xl">
+                      {getInitials(officer.name)}
+                    </span>
+                  </div>
                 )}
               </div>
 
-              {/* Info */}
-              <div>
-                <div className="font-bold text-navy-deep text-sm leading-tight">
+              <div className="px-5 py-5">
+                <div className="eyebrow text-gold-ink mb-2 !text-[0.625rem]">
+                  {officer.title}
+                </div>
+                <div className="font-bold text-navy-deep text-base sm:text-lg leading-snug">
                   {officer.name === "TBD" ? (
-                    <span className="text-slate-400 italic">TBD</span>
+                    <span className="text-slate-400 italic font-normal">TBD</span>
                   ) : (
                     officer.name
                   )}
                 </div>
-                <div className="text-gold text-xs font-semibold mt-1 uppercase tracking-wide leading-tight">
-                  {officer.title}
-                </div>
               </div>
-            </motion.div>
+            </motion.li>
           ))}
-        </motion.div>
+        </motion.ul>
 
       </div>
     </section>

@@ -1,57 +1,54 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { AnimatedCounter } from "@/components/shared/AnimatedCounter"
-import { fadeLeft, fadeRight, staggerContainer, cardEntrance, viewportOnce } from "@/lib/motion"
-
-const STATS = [
-  { value: 11, suffix: "", label: "Member Schools" },
-  { value: 400, suffix: "+", label: "Area 7 Students" },
-  { value: 3, suffix: "", label: "Annual Events" },
-  { value: 1942, suffix: "", label: "FBLA Founded" },
-]
+import { fadeLeft, fadeRight, viewportOnce } from "@/lib/motion"
+import { SectionHeading } from "@/components/shared/SectionHeading"
 
 export function About() {
   return (
     <section id="about" className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-14 lg:gap-20 items-center">
 
-          {/* Left: Mission text */}
+          {/* Left: mission */}
           <motion.div
             variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="space-y-6"
           >
-            <div className="space-y-3">
-              <span className="gold-bar" />
-              <h2 className="text-navy-deep text-3xl sm:text-4xl font-bold">
-                Who We Are
-              </h2>
+            <SectionHeading
+              eyebrow="Who We Are"
+              title="A network built on education, service, and progress"
+            />
+
+            <div className="font-body mt-7 space-y-5 text-slate-600 text-lg leading-relaxed">
+              <p>
+                FBLA Area 7 represents a dynamic network of high schools across North Texas,
+                united in developing the next generation of business leaders. We foster
+                entrepreneurship, leadership skills, and academic excellence through
+                competitive events, networking, and community service.
+              </p>
+              <p>
+                Our area spans a diverse set of schools and communities, each contributing
+                unique perspectives and talents to strengthen our collective mission —
+                preparing students for success in business and in life.
+              </p>
             </div>
-            <p className="text-slate-600 text-lg leading-relaxed" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-              FBLA Area 7 represents a dynamic network of high schools across North Texas,
-              united in developing the next generation of business leaders. We foster
-              entrepreneurship, leadership skills, and academic excellence through
-              competitive events, networking, and community service.
-            </p>
-            <p className="text-slate-600 text-lg leading-relaxed" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-              Our area encompasses eleven diverse schools and communities, each contributing
-              unique perspectives and talents to strengthen our collective mission — preparing
-              students for success in business and in life.
-            </p>
-            <div className="flex items-center gap-4 pt-2">
+
+            <div className="flex items-center gap-5 pt-8">
               <a
                 href="https://fblatx.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-navy-mid transition-colors"
+                className="inline-flex items-center gap-2.5 text-sm font-semibold text-navy
+                           hover:text-navy-mid transition-colors"
               >
                 <img
                   src="/images/design-mode/download(2).png"
-                  alt="Texas FBLA"
+                  alt=""
+                  loading="lazy"
                   className="h-8 w-auto object-contain"
                 />
                 <span>Texas FBLA ↗</span>
@@ -68,31 +65,35 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Right: Stats grid */}
+          {/* Right: supporting image with a pull-quote stat.
+              The full stat set lives in the Hero — repeating it here was the
+              redundancy that made the page feel padded. */}
           <motion.div
-            variants={staggerContainer}
+            variants={fadeRight}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="grid grid-cols-2 gap-4"
+            className="relative"
           >
-            {STATS.map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={cardEntrance}
-                className="glass-light rounded-xl p-6 text-center shadow-[var(--shadow-card)] hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div
-                  className="text-4xl sm:text-5xl font-bold text-gold mb-2"
-                  style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
-                >
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="text-navy-deep text-sm font-semibold uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-[var(--shadow-lift)]">
+              <Image
+                src="/images/img-3053.jpeg"
+                alt="Area 7 students at the 2025 Area Conference"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div
+              className="surface rounded-xl shadow-[var(--shadow-lift)] px-6 py-5
+                         w-max max-w-[80%] -mt-10 ml-6 relative z-10"
+            >
+              <div className="text-3xl font-bold text-navy-deep leading-none">1942</div>
+              <div className="font-body text-slate-500 text-sm mt-1.5">
+                FBLA founded — still going
+              </div>
+            </div>
           </motion.div>
 
         </div>

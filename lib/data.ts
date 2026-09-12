@@ -78,7 +78,24 @@ export const SCHOOLS: School[] = [
     city: "Fort Worth, TX",
     logo: "/images/world-20language-20instatute.png",
   },
+  {
+    id: "crowley",
+    name: "Crowley High School",
+    shortName: "Crowley HS",
+    city: "Crowley, TX",
+    logo: "/images/crowley-high-school.png",
+  },
+  {
+    id: "north-crowley",
+    name: "North Crowley High School",
+    shortName: "North Crowley HS",
+    city: "Fort Worth, TX",
+    logo: "/images/north-crowley-high-school.png",
+  },
 ]
+
+/** Single source of truth for the member-school count shown across the site. */
+export const SCHOOL_COUNT = SCHOOLS.length
 
 export const EVENTS: Event[] = [
   {
@@ -115,8 +132,7 @@ export const OFFICERS: Officer[] = [
   {
     name: "Subha Karki",
     title: "President",
-    photo: "/images/subha-karki.jpg",
-    photoPosition: "center 40%",
+    photo: "/images/subha-karki-headshot.jpg",
   },
   {
     name: "Aashika Jupudi",

@@ -3,7 +3,8 @@ export interface School {
   name: string
   shortName: string
   city: string
-  logo: string
+  /** Omit to fall back to an initials monogram. */
+  logo?: string
 }
 
 export interface Event {

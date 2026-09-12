@@ -12,7 +12,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      {/* Clip horizontally: fadeRight's pre-entrance x-offset otherwise widens
+          the page by ~12px on phones until each section animates in. */}
+      <main className="overflow-x-clip">
         <Hero />
         <About />
         <Schools />

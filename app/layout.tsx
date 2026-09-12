@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import { Lato } from "next/font/google"
+import { SCHOOL_COUNT } from "@/lib/data"
 import "./globals.css"
 
 const montserrat = Montserrat({
@@ -20,8 +21,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: "FBLA Area 7 — North Texas",
-  description:
-    "Official website of FBLA Area 7, North Texas. Connecting 11 member chapters and developing the next generation of business leaders.",
+  description: `Official website of FBLA Area 7, North Texas. Connecting ${SCHOOL_COUNT} member chapters and developing the next generation of business leaders.`,
   openGraph: {
     title: "FBLA Area 7 — North Texas",
     description: "Shaping tomorrow's business leaders across North Texas.",

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion"
+import { SectionHeading } from "@/components/shared/SectionHeading"
 import { EVENTS } from "@/lib/data"
 import type { Variants } from "framer-motion"
 
@@ -30,22 +31,13 @@ export function Events() {
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 max-w-5xl">
 
-        {/* Heading */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+        <SectionHeading
+          eyebrow="Calendar"
+          title="Upcoming Events"
+          description="Don't miss these important dates for Area 7."
+          tone="dark"
           className="mb-16"
-        >
-          <span className="gold-bar mb-4" />
-          <h2 className="text-white text-3xl sm:text-4xl font-bold mb-3">
-            Upcoming Events
-          </h2>
-          <p className="text-white/55 text-lg" style={{ fontFamily: "var(--font-lato), sans-serif" }}>
-            Don't miss these important dates for Area 7
-          </p>
-        </motion.div>
+        />
 
         {/* Timeline rows */}
         <motion.div
@@ -88,10 +80,7 @@ export function Events() {
                   </span>
                 </div>
 
-                <p
-                  className="text-white/50 text-sm leading-relaxed max-w-2xl"
-                  style={{ fontFamily: "var(--font-lato), sans-serif" }}
-                >
+                <p className="font-body text-white/50 text-sm leading-relaxed max-w-2xl">
                   {event.description}
                 </p>
 
