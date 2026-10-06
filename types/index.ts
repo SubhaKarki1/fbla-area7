@@ -29,3 +29,14 @@ export interface GalleryPhoto {
   alt: string
   caption: string
 }
+
+export interface Sponsor {
+  id: string
+  name: string
+  /** One line on who they are or what they supported. */
+  blurb: string
+  city: string
+  url: string
+  /** Omit to fall back to an initials monogram. */
+  logo?: string
+}

@@ -6,6 +6,7 @@ import { Schools } from "@/components/sections/Schools"
 import { Gallery } from "@/components/sections/Gallery"
 import { Events } from "@/components/sections/Events"
 import { Leadership } from "@/components/sections/Leadership"
+import { Sponsors } from "@/components/sections/Sponsors"
 import { Contact } from "@/components/sections/Contact"
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <Gallery />
         <Events />
         <Leadership />
+        <Sponsors />
         <Contact />
       </main>
       <Footer />

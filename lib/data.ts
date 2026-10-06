@@ -1,4 +1,4 @@
-import type { School, Event, Officer, GalleryPhoto } from "@/types"
+import type { School, Event, Officer, GalleryPhoto, Sponsor } from "@/types"
 
 export const SCHOOLS: School[] = [
   {
@@ -186,5 +186,16 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     src: "/images/design-mode/DSCN1135-scaled-e1689390899493.jpg(2).jpeg",
     alt: "State Leadership Conference",
     caption: "State Leadership Conference — Area 7 students shine bright with record participation",
+  },
+]
+
+export const SPONSORS: Sponsor[] = [
+  {
+    id: "bill-tait-state-farm",
+    name: "Bill Tait — State Farm",
+    blurb: "Supporting Area 7's conference travel and competitive events program.",
+    city: "Southlake, TX",
+    url: "https://www.statefarm.com/agent/us/tx/southlake/bill-tait-qnzfm8cb1ak",
+    logo: "/images/sponsors/state-farm.svg",
   },
 ]

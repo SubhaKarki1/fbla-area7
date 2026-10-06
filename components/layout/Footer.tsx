@@ -1,9 +1,12 @@
+import { SPONSORS } from "@/lib/data"
+
 const QUICK_LINKS = [
   { label: "About", href: "#about" },
   { label: "Schools", href: "#schools" },
   { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
   { label: "Leadership", href: "#leadership" },
+  { label: "Sponsors", href: "#sponsors" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -81,14 +84,36 @@ export function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/30 text-xs">
-            © {new Date().getFullYear()} FBLA Area 7 · North Texas. All rights reserved.
-          </p>
-          <p className="text-white/20 text-xs">
-            Future Business Leaders of America
-          </p>
+        {/* Bottom bar. The sponsor credit shares the existing rule rather than
+            adding a second one, and reads from SPONSORS so the name and link
+            stay in step with the Sponsors section. */}
+        <div className="border-t border-white/8 pt-6">
+          {SPONSORS.length > 0 && (
+            <p className="font-body text-white/40 text-xs mb-5">
+              Proudly sponsored by{" "}
+              {SPONSORS.map((sponsor, i) => (
+                <span key={sponsor.id}>
+                  {i > 0 && ", "}
+                  <a
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gold hover:text-gold-light font-semibold transition-colors"
+                  >
+                    {sponsor.name}
+                  </a>
+                </span>
+              ))}
+            </p>
+          )}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-white/30 text-xs">
+              © {new Date().getFullYear()} FBLA Area 7 · North Texas. All rights reserved.
+            </p>
+            <p className="text-white/20 text-xs">
+              Future Business Leaders of America
+            </p>
+          </div>
         </div>
       </div>
     </footer>

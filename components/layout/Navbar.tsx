@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
   { label: "Leadership", href: "#leadership" },
+  { label: "Sponsors", href: "#sponsors" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -84,7 +85,9 @@ export function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-6">
+          {/* gap-5 at lg: seven links no longer clear the logo at 1024px on the
+              old gap-6, and the row wrapped. Restored to gap-6 from xl up. */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
             {NAV_LINKS.map((link) => {
               const id = link.href.replace("#", "")
               const isActive = activeSection === id
