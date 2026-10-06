@@ -198,4 +198,12 @@ export const SPONSORS: Sponsor[] = [
     url: "https://www.statefarm.com/agent/us/tx/southlake/bill-tait-qnzfm8cb1ak",
     logo: "/images/sponsors/state-farm.svg",
   },
+  {
+    id: "southlake-chamber",
+    name: "Southlake Chamber of Commerce",
+    blurb: "Connecting Area 7 students with the local business community.",
+    city: "Southlake, TX",
+    url: "https://www.southlakechamber.org/",
+    logo: "/images/sponsors/southlake-chamber.png",
+  },
 ]

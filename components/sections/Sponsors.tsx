@@ -89,11 +89,12 @@ export function Sponsors() {
                 rel="noopener noreferrer"
                 className="flex flex-col sm:flex-row items-center gap-6 sm:gap-7 p-7 sm:p-8 text-center sm:text-left"
               >
-                {/* Short box for a wide wordmark: corporate logos here run about
-                    7:1, so a tall square frame would leave the mark floating in
-                    dead space. Width is what constrains it; the height only
-                    needs to clear a stacked mark. */}
-                <div className="w-40 sm:w-44 h-14 shrink-0 flex items-center justify-center">
+                {/* One box, two very different marks: a linear wordmark runs
+                    about 7:1 and is constrained by width, while a stacked mark
+                    is nearer 2:1 and is constrained by height. The box is sized
+                    so neither is the one that suffers — object-contain letters
+                    each into the same footprint, keeping the cards aligned. */}
+                <div className="w-40 sm:w-44 h-20 shrink-0 flex items-center justify-center">
                   <SponsorMark sponsor={sponsor} />
                 </div>
                 <div>

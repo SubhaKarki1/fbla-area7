@@ -93,7 +93,10 @@ export function Footer() {
               Proudly sponsored by{" "}
               {SPONSORS.map((sponsor, i) => (
                 <span key={sponsor.id}>
-                  {i > 0 && ", "}
+                  {/* Middot, not a comma: sponsor names can contain their own
+                      punctuation ("Bill Tait — State Farm"), and a comma between
+                      two gold links let the pair read as a single name. */}
+                  {i > 0 && <span className="text-white/25"> · </span>}
                   <a
                     href={sponsor.url}
                     target="_blank"
