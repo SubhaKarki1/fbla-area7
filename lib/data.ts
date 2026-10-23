@@ -92,6 +92,55 @@ export const SCHOOLS: School[] = [
     city: "Fort Worth, TX",
     logo: "/images/north-crowley-high-school.png",
   },
+  {
+    id: "millsap",
+    name: "Millsap High School",
+    shortName: "Millsap HS",
+    city: "Millsap, TX",
+    logo: "/images/millsap-high-school.png",
+  },
+  {
+    id: "north-garland",
+    name: "North Garland High School",
+    shortName: "North Garland HS",
+    city: "Garland, TX",
+    logo: "/images/north-garland-high-school.svg",
+  },
+  {
+    id: "keller",
+    name: "Keller High School",
+    shortName: "Keller HS",
+    city: "Keller, TX",
+    logo: "/images/keller-high-school.png",
+  },
+  {
+    id: "duncanville",
+    name: "Duncanville High School",
+    shortName: "Duncanville HS",
+    city: "Duncanville, TX",
+    logo: "/images/duncanville-high-school.png",
+  },
+  {
+    id: "jesuit-dallas",
+    name: "Jesuit College Preparatory School of Dallas",
+    shortName: "Jesuit Dallas",
+    city: "Dallas, TX",
+    logo: "/images/jesuit-dallas.svg",
+  },
+  {
+    id: "opportunity-central",
+    name: "Keith Bell Opportunity Central",
+    shortName: "Opportunity Central",
+    city: "Forney, TX",
+    logo: "/images/opportunity-central.png",
+  },
+  {
+    id: "islamic-school-irving",
+    name: "Islamic School of Irving",
+    shortName: "Islamic School of Irving",
+    city: "Irving, TX",
+    logo: "/images/islamic-school-of-irving.png",
+  },
 ]
 
 /** Single source of truth for the member-school count shown across the site. */
